@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Camper - 프리미엄 캠핑 매니저</title>
+    <meta name="description" content="완벽한 캠핑을 위한 예약 관리 및 준비물 체크리스트">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Noto+Sans+KR:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <header>
+            <div class="logo">
+                <span class="icon">🏕️</span>
+                <h1>Camper</h1>
+            </div>
+            <div class="header-actions">
+                <button id="shareBtn" class="btn-icon" title="공유하기">🔗</button>
+                <button id="exportBtn" class="btn-icon" title="파일로 내보내기">💾</button>
+            </div>
+            <div class="date-display" id="currentDate"></div>
+        </header>
+
+        <main>
+            <!-- 예약 정보 섹션 -->
+            <section id="reservationSection" class="card-section">
+                <div class="section-header">
+                    <h2>내 예약 정보</h2>
+                    <button id="editReservationBtn" class="btn-icon">✏️</button>
+                </div>
+                <div id="reservationCard" class="reservation-card empty" title="클릭하여 예약 정보를 입력하세요">
+                    <div class="reservation-info">
+                        <div class="info-group">
+                            <label>캠핑장</label>
+                            <div id="resCampground" class="value">예약 정보가 없습니다.</div>
+                            <div class="empty-hint">여기를 클릭하여 정보를 등록하세요!</div>
+                        </div>
+                        <div class="time-grid">
+                            <div class="info-group">
+                                <label>입실 시간</label>
+                                <div id="resCheckIn" class="value">-</div>
+                            </div>
+                            <div class="info-group">
+                                <label>퇴실 시간</label>
+                                <div id="resCheckOut" class="value">-</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 예약 편집 폼 (Hidden by default) -->
+                <div id="reservationForm" class="form-container hidden">
+                    <h3>예약 정보 설정</h3>
+                    <div class="input-group">
+                        <input type="text" id="inputCampground" placeholder="캠핑장 이름">
+                    </div>
+                    <div class="input-group">
+                        <label>입실 일시</label>
+                        <input type="datetime-local" id="inputCheckIn">
+                    </div>
+                    <div class="input-group">
+                        <label>퇴실 일시</label>
+                        <input type="datetime-local" id="inputCheckOut">
+                    </div>
+                    <div class="form-actions">
+                        <button id="saveReservationBtn" class="btn-primary">저장</button>
+                        <button id="cancelReservationBtn" class="btn-secondary">취소</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 체크리스트 섹션 -->
+            <section id="checklistSection" class="card-section">
+                <div class="section-header">
+                    <h2>준비물 체크리스트</h2>
+                    <div class="progress-container">
+                        <span id="progressText">0%</span>
+                        <div class="progress-bar">
+                            <div id="progressBarFill" class="progress-fill"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="add-item-container">
+                    <input type="text" id="newItemInput" placeholder="추가할 준비물을 입력하세요...">
+                    <button id="addItemBtn" class="btn-add">+</button>
+                </div>
+
+                <div class="filter-tabs">
+                    <button class="tab active" data-filter="all">전체</button>
+                    <button class="tab" data-filter="pending">미완료</button>
+                    <button class="tab" data-filter="completed">완료</button>
+                </div>
+
+                <ul id="checklist" class="checklist">
+                    <!-- 체크리스트 아이템들이 여기에 동적으로 추가됨 -->
+                </ul>
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; 2026 Camper. Happy Camping!</p>
+        </footer>
+    </div>
+
+    <!-- 알림 메시지 -->
+    <div id="toast" class="toast hidden"></div>
+
+    <script src="app.js"></script>
+</body>
+</html>
